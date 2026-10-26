@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:SpreadsheetApp"
+             x:Class="SpreadsheetApp.MainPage"
+             Title="Таблиця">
+
+    <!-- Заголовок у панелі програми по центру -->
+    <Shell.TitleView>
+        <Grid HorizontalOptions="FillAndExpand">
+            <Label Text="Таблиця"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+        </Grid>
+    </Shell.TitleView>
+
+    <!-- Головне меню програми (вимога п. 17 методички) -->
+    <ContentPage.MenuBarItems>
+        <MenuBarItem Text="Файл">
+            <MenuFlyoutItem Text="Зберегти" Clicked="OnSaveClicked" />
+            <MenuFlyoutItem Text="Відкрити" Clicked="OnLoadClicked" />
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Text="Вийти" Clicked="OnExitClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Таблиця">
+            <MenuFlyoutItem Text="Порахувати" Clicked="OnCalculateClicked" />
+            <MenuFlyoutItem Text="Перемкнути режим (Вираз / Значення)" Clicked="OnToggleModeClicked" />
+            <MenuFlyoutSeparator />
+            <MenuFlyoutItem Text="Додати рядок" Clicked="OnAddRowClicked" />
+            <MenuFlyoutItem Text="Видалити рядок" Clicked="OnDeleteRowClicked" />
+            <MenuFlyoutItem Text="Додати стовпчик" Clicked="OnAddColumnClicked" />
+            <MenuFlyoutItem Text="Видалити стовпчик" Clicked="OnDeleteColumnClicked" />
+        </MenuBarItem>
+        <MenuBarItem Text="Допомога">
+            <MenuFlyoutItem Text="Довідка про програму" Clicked="OnHelpClicked" />
+        </MenuBarItem>
+    </ContentPage.MenuBarItems>
+
+    <Grid RowDefinitions="Auto,Auto,*" ColumnDefinitions="*" Padding="8" RowSpacing="6">
+
+        <!-- Панель кнопок (дублюють основні елементи меню, вимога с. 17-18) -->
+        <ScrollView Orientation="Horizontal" Grid.Row="0">
+            <HorizontalStackLayout Spacing="6">
+                <Button Text="Зберегти" Clicked="OnSaveClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="Відкрити" Clicked="OnLoadClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="Порахувати" Clicked="OnCalculateClicked" BackgroundColor="#1c3b5e" TextColor="White" FontAttributes="Bold" />
+                <Button x:Name="modeButton" Text="Режим: ВИРАЗ" Clicked="OnToggleModeClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="+ Рядок" Clicked="OnAddRowClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="- Рядок" Clicked="OnDeleteRowClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="+ Стовпчик" Clicked="OnAddColumnClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="- Стовпчик" Clicked="OnDeleteColumnClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="Довідка" Clicked="OnHelpClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+                <Button Text="Вийти" Clicked="OnExitClicked" BackgroundColor="#1c3b5e" TextColor="White" />
+            </HorizontalStackLayout>
+        </ScrollView>
+
+        <!-- Рядок формул: вибрана клітинка, поле введення та індикатор стану -->
+        <Grid Grid.Row="1" ColumnDefinitions="Auto,Auto,Auto,*,Auto" ColumnSpacing="8" VerticalOptions="Center">
+            <Label Text="Клітинка:" FontAttributes="Bold" VerticalOptions="Center" />
+            <Label x:Name="selectedCellLabel" Grid.Column="1" Text="A1" FontAttributes="Bold" TextColor="#1565c0" VerticalOptions="Center" />
+            <Label Grid.Column="2" Text="fx =" FontAttributes="Bold" VerticalOptions="Center" />
+            <Entry x:Name="formulaInput" Grid.Column="3" Placeholder="Введіть вираз (наприклад, =A1 + max(B2, 10))" Completed="OnFormulaInputCompleted" Unfocused="OnFormulaInputUnfocused" />
+            <Label x:Name="statusLabel" Grid.Column="4" Text="Готово" TextColor="#2e7d32" VerticalOptions="Center" />
+        </Grid>
+
+        <!-- Графічна сітка електронної таблиці -->
+        <ScrollView Grid.Row="2" Orientation="Both">
+            <Grid x:Name="grid" BackgroundColor="#dcdcdc" RowSpacing="1" ColumnSpacing="1" />
+        </ScrollView>
+
+    </Grid>
+</ContentPage>
+
