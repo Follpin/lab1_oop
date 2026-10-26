@@ -1,0 +1,2 @@
+Відео з демонстрацією коду: https://drive.google.com/file/d/1JYS90_y5Ye-2x_HKrrkmeFdRxB9uKatb/view?usp=sharing
+Відео з демонстрацією проєкту: https://drive.google.com/file/d/10xIdRhx1qrRXzQ6fOQ7UKyOAJF8KiH4P/view?usp=sharing
