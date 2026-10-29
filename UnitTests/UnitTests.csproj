@@ -1,0 +1,31 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <RootNamespace>SpreadsheetApp</RootNamespace>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.13.1" />
+    <PackageReference Include="Antlr4BuildTasks" Version="12.14.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="3.1.1" />
+    <PackageReference Include="MSTest.TestFramework" Version="3.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Antlr4 Include="..\SpreadsheetApp\Engine\LabCalculator.g4" Link="Engine\LabCalculator.g4">
+      <Visitor>true</Visitor>
+      <Listener>false</Listener>
+    </Antlr4>
+    <Compile Include="..\SpreadsheetApp\Models\Cell.cs" Link="Models\Cell.cs" />
+    <Compile Include="..\SpreadsheetApp\Models\DisplayMode.cs" Link="Models\DisplayMode.cs" />
+    <Compile Include="..\SpreadsheetApp\Models\Spreadsheet.cs" Link="Models\Spreadsheet.cs" />
+    <Compile Include="..\SpreadsheetApp\Engine\FormulaCalculator.cs" Link="Engine\FormulaCalculator.cs" />
+    <Compile Include="..\SpreadsheetApp\Engine\LabCalculatorVisitor.cs" Link="Engine\LabCalculatorVisitor.cs" />
+    <Compile Include="..\SpreadsheetApp\Engine\ThrowExceptionErrorListener.cs" Link="Engine\ThrowExceptionErrorListener.cs" />
+    <Compile Include="..\SpreadsheetApp\Services\FileManager.cs" Link="Services\FileManager.cs" />
+    <Compile Include="..\SpreadsheetApp\Services\SpreadsheetManager.cs" Link="Services\SpreadsheetManager.cs" />
+  </ItemGroup>
+</Project>
